@@ -1,0 +1,96 @@
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<title>Move using Keys & Mouse</title>
+</head>
+<body>
+<style>
+body {
+overflow:hidden;
+background:#8e44ad;
+    font-family: monospace;
+
+}
+
+.main-container{
+height:450px;
+width:100%;
+background:#8e44ad;
+position:relative;
+}
+
+.pointer {
+width:50px;
+height:50px;
+border-radius:50px;
+background-color:#f1c40f;
+position:absolute;
+left:25px;
+top:50px;
+}
+.heading-text{
+padding-top:25px;
+color:white;
+text-align:center;
+}
+</style>
+<div class="main-container">
+<h1 class="heading-text">Move Pointer using Keys & Mouse</h1>
+<div class="pointer"></div>
+
+
+</div>
+<script>
+$(document).ready(function (){
+console.log('Document Ready');
+
+$('.main-container').click(function(e){
+var elm = $(this);
+
+var xpos = e.pageX - elm.offset().left;
+var ypos = e.pageY - elm.offset().top;
+$('.pointer').animate({top:ypos,left:xpos});
+console.log(xpos,ypos);
+})
+
+$(document).keydown(function(e){
+var pos = $('.pointer').position();
+switch(e.keyCode){
+case 38:
+var top = pos.top-100; 
+$('.pointer').animate({top:top},100);
+		console.log('Up');
+		break;
+case 37: 
+var left = pos.left-100; 
+$('.pointer').animate({left:left},100);
+console.log('left');
+break;
+
+case 39: // right
+var left = pos.left+100; 
+$('.pointer').animate({left:left},100);
+console.log('right');
+break;
+
+case 40: // down
+var top = pos.top+100; 
+$('.pointer').animate({top:top},100);
+		console.log('down');
+break;
+
+}
+
+})
+
+
+})
+
+
+
+</script>
+
+
+</body>
+
+</html>
